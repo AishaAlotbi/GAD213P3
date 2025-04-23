@@ -2,13 +2,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using Systems.DateTime;
 
 
 
 public class ClockManager : MonoBehaviour
 {
    
-    public TextMeshProUGUI Date, Time, Week;
+    public TextMeshProUGUI Date, Time, Season, Week;
 
     private void OnEnable()
     {
@@ -24,6 +25,7 @@ public class ClockManager : MonoBehaviour
         Date.text = dateTime.DateToString();
         Time.text = dateTime.TimeToString();
         Week.text = $"WK: {dateTime.CurrentWeek}";
+        Season.text = dateTime.SeasonType.ToString();
 
         float t = (float)dateTime.Hour/ 24f;
 

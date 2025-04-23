@@ -2,12 +2,17 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
+namespace Systems.DateTime
+{
+
 
     public class TimeManager : MonoBehaviour
     {
         [Header("Date & Time Settings")]
         [Range(1, 28)]
         public int dateInMonth;
+        [Range(1, 4)]
+        public int season;
         [Range(1, 99)]
         public int year;
         [Range(0, 24)]
@@ -26,7 +31,7 @@ using UnityEngine.Events;
 
         private void Awake()
         {
-            dateTime = new DateTime(dateInMonth, year, hour, minutes * 10);
+            dateTime = new DateTime(dateInMonth, season - 1, year, hour, minutes * 10);
 
         }
 
@@ -63,11 +68,13 @@ using UnityEngine.Events;
             #region Feilds
 
             private Days day;
-            private int date;
-            private int year;
+            [SerializeField] private int date;
+            [SerializeField] private int year;
 
-            private int hour;
-            private int minutes;
+            [SerializeField] private int hour;
+            [SerializeField] private int minutes;
+
+            [SerializeField] private Season season;
 
             private int totalNumDays;
             private int totalNumWeeks;
@@ -80,6 +87,7 @@ using UnityEngine.Events;
             public int Date => date;
             public int Hour => hour;
             public int Minute => minutes;
+            public Season SeasonType => season;
             public int yYear => year;
             public int TotalNumDays => totalNumDays;
             public int TotalNumWeeks => totalNumWeeks;
@@ -89,7 +97,7 @@ using UnityEngine.Events;
 
             #region Constructors
 
-            public DateTime(int date, int year, int hour, int minutes)
+            public DateTime(int date, int season, int year, int hour, int minutes)
             {
                 // this.date = (int)(Days)(date % 7);
                 // if (day == 0) day = (Days)7;
@@ -98,11 +106,14 @@ using UnityEngine.Events;
 
 
                 this.date = date;
+                this.season = (Season)season;
                 this.year = year;
                 this.hour = hour;
                 this.minutes = minutes;
 
-                totalNumDays = this.date + 112 * (this.year - 1);
+                //totalNumDays = this.date + 112 * (this.year - 1);
+                // totalNumWeeks = 1 + totalNumDays / 7;
+                totalNumDays = date + (28 * (int)this.season) + (122 * (year - 1));
                 totalNumWeeks = 1 + totalNumDays / 7;
             }
 
@@ -150,13 +161,22 @@ using UnityEngine.Events;
 
                 if (date % 29 == 0)
                 {
-                    AdvanceYear();
+                    AdvanceSeason();
                     date = 1;
                 }
 
                 totalNumDays++;
             }
 
+            private void AdvanceSeason()
+            {
+                if (season == Season.Winter)
+                {
+                    season = Season.Spring;
+                    AdvanceYear();
+                }
+
+            }
             private void AdvanceYear()
             {
                 date = 1;
@@ -193,10 +213,11 @@ using UnityEngine.Events;
             }
             #endregion
 
+
             #region To String
             public override string ToString()
             {
-                return $"Date: {DateToString()} Time: {TimeToString()} " + $"\nTotal Days: {totalNumDays} | Total Weeks: {totalNumWeeks}";
+                return $"Date: {DateToString()} Season: {season.ToString()} Time: {TimeToString()} " + $"\nTotal Days: {totalNumDays} | Total Weeks: {totalNumWeeks}";
             }
 
             public string DateToString()
@@ -243,6 +264,18 @@ using UnityEngine.Events;
                 Sun = 7,
 
             }
+
+            [System.Serializable]
+            public enum Season
+            {
+                Spring = 0,
+                Summer = 1,
+                Fall = 2,
+                Winter = 3
+
+
+            }
         }
     }
+}
 
