@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
 using Systems.DateTime;
 
 
@@ -20,7 +19,7 @@ public class ClockManager : MonoBehaviour
         TimeManager.OnDateTimeChanged -= UpdateDateTime;
     }
 
-    private void UpdateDateTime(TimeManager.DateTime dateTime)
+    private void UpdateDateTime(Systems.DateTime.DateTime dateTime)
     {
         Date.text = dateTime.DateToString();
         Time.text = dateTime.TimeToString();
