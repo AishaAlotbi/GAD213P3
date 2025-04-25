@@ -21,6 +21,7 @@ namespace Systems.DateTime
         public int minutes;
 
         private static DateTime dateTime;
+        public static TimeManager Instance;
 
         [Header("Tick Settings")]
         public int tickMinutesIncrease = 10;
@@ -33,7 +34,16 @@ namespace Systems.DateTime
 
         private void Awake()
         {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(this.gameObject);
+                return;
+            }
+
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
             dateTime = new DateTime(dateInMonth, season - 1, year, hour, minutes * 10);
+            DateTime = dateTime;
 
         }
 
@@ -60,7 +70,19 @@ namespace Systems.DateTime
         void AdvanceTime()
         {
             dateTime.AdvanceMinutes(tickMinutesIncrease);
+            OnDateTimeChanged?.Invoke(DateTime);
+        }
+
+        public void AdvanceDayManually()
+        {
+            Debug.Log("Advancing day...");
+            DateTime.AdvanceDay();
             OnDateTimeChanged?.Invoke(dateTime);
+        }
+
+        public DateTime GetCurrentDateTime()
+        {
+            return dateTime;
         }
     }
 
@@ -170,6 +192,7 @@ namespace Systems.DateTime
 
             totalNumDays++;
         }
+
 
         private void AdvanceSeason()
         {

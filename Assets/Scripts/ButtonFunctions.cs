@@ -4,18 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonFunctions : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    public TimeManager timeManager;
     public void ShiftToGameScene()
     {
         SceneManager.LoadScene(0);
@@ -28,7 +17,8 @@ public class ButtonFunctions : MonoBehaviour
 
     public void EndDay()
     {
-        SceneManager.LoadScene(2);
-        TimeManager.DateTime.AdvanceDay();
+        timeManager.AdvanceDayManually();
+       // SceneManager.LoadScene(2);
+        
     }
 }

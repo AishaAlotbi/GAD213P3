@@ -13,6 +13,14 @@ public class ClockManager : MonoBehaviour
     private void OnEnable()
     {
         TimeManager.OnDateTimeChanged += UpdateDateTime;
+        if (TimeManager.Instance != null)
+        {
+            UpdateDateTime(TimeManager.Instance.GetCurrentDateTime());
+        }
+        else
+        {
+            Debug.LogWarning("TimeManager.Instance is null — will wait for event.");
+        }
     }
     private void OnDisable()
     {
