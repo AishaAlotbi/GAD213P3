@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class CalendarPanel : MonoBehaviour
+public class CalendarPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public KeyDates KeyDate;
     public TextMeshProUGUI Date;
@@ -50,7 +50,7 @@ public class CalendarPanel : MonoBehaviour
         CalendarController.DescriptionText.text = "";
     }
 
-    public void OnPointrEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)
     {
         if(KeyDate != null)
         {
