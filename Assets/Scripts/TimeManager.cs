@@ -150,7 +150,7 @@ namespace Systems.DateTime
             }
         }
 
-        private void AdvanceDay()
+        public void AdvanceDay()
         {
             if (day + 1 > (Days)7)
             {
