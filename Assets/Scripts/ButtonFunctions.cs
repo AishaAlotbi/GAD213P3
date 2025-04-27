@@ -7,18 +7,18 @@ public class ButtonFunctions : MonoBehaviour
     public TimeManager timeManager;
     public void ShiftToGameScene()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("GameScene");
     }
 
     public void ShiftToCraftingScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Crafting");
     }
 
     public void EndDay()
     {
         //timeManager.AdvanceDayManually();
-       SceneManager.LoadScene(2);
+       SceneManager.LoadScene("Calander");
         
     }
 }

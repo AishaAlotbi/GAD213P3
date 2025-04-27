@@ -9,14 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
+    path: Assets/Scenes/Calander.unity
+    guid: 195a3f21043ca314e98efd2243fa5275
+  - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: abd29e5e3b392224da8fa4ff65b9480d
   - enabled: 1
     path: Assets/Scenes/Crafting.unity
     guid: 1eb1daaa7c3238342851443cc83a27eb
-  - enabled: 1
-    path: Assets/Scenes/Calander.unity
-    guid: 195a3f21043ca314e98efd2243fa5275
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
