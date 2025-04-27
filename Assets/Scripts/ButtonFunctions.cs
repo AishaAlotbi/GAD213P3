@@ -18,7 +18,7 @@ public class ButtonFunctions : MonoBehaviour
     public void EndDay()
     {
         //timeManager.AdvanceDayManually();
-       // SceneManager.LoadScene(2);
+       SceneManager.LoadScene(2);
         
     }
 }
