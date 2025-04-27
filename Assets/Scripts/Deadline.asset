@@ -19,5 +19,5 @@ MonoBehaviour:
     minutes: 0
     season: 0
   yearly: 1
-  thumbnail: {fileID: -5055118836324436979, guid: 151ec0a896dcf254abd520aee025b7fa, type: 3}
+  thumbnail: {fileID: 3959922740387019359, guid: 111a53166df079f40bb18a58504123cd, type: 3}
   Description: Deadline!
