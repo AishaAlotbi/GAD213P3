@@ -7,23 +7,12 @@ using Systems.DateTime;
 
 public class ClockManager : MonoBehaviour
 {
-   
+
     public TextMeshProUGUI Date, Time, Season, Week;
 
     private void OnEnable()
     {
         TimeManager.OnDateTimeChanged += UpdateDateTime;
-        
-        /*if (TimeManager.Instance != null)
-        {
-            UpdateDateTime(TimeManager.Instance.GetCurrentDateTime());
-        }
-        else
-        {
-            Debug.LogWarning("TimeManager.Instance is null — will wait for event.");
-        }
-
-        */
     }
     private void OnDisable()
     {
@@ -37,7 +26,7 @@ public class ClockManager : MonoBehaviour
         Week.text = $"WK: {dateTime.CurrentWeek}";
         Season.text = dateTime.SeasonType.ToString();
 
-        float t = (float)dateTime.Hour/ 24f;
+        float t = (float)dateTime.Hour / 24f;
 
     }
 }
